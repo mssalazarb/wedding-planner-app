@@ -20,9 +20,12 @@ export function AuthProvider({ children }: AuthProviderType) {
   useEffect((): void => {
     console.log(pathname);
     if (!['/login/', '/error/'].includes(pathname)) {
-      const token: string | null = getParam('token');
+      const token: string | null = getParam('authToken');
       const expires: string | null = getParam('expires');
       const userStorage: string | null = getParam('user');
+
+      console.log(userStorage);
+      console.log(!token || !expires || (new Date(expires) < new Date()) || !userStorage);
 
       if (!token || !expires || (new Date(expires) < new Date()) || !userStorage) {
         dispatch(logout());

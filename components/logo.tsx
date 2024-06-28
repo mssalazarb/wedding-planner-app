@@ -1,13 +1,21 @@
-import Image from "next/image";
+const types: any = {
+  header: {
+    width: 250,
+    height: 174,
+  },
+  sidebar: {
+    width: 150,
+    height: 120,
+  }
+}
 
-const Logo = () => {
+const Logo = ({ type = 'header' }: { type: string }) => {
   return (
-    <Image
-      src="/images/logo.png"
+    <img
+      src={'/images/logo.png'}
       alt="logo"
-      width={250}
-      height={174}
-      priority
+      width={types[type].width}
+      height={types[type].height}
     />
   );
 };
