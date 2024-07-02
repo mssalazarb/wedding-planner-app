@@ -32,6 +32,7 @@ export default function RootLayout(props: MyAppType) {
     <html lang="en">
       <head>
         <title>El Ensueño</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-big-calendar@1.13.0/lib/css/react-big-calendar.min.css"></link>
       </head>
       <body>
         <Provider store={store}>

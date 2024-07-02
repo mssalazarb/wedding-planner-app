@@ -2,8 +2,8 @@ import RequestType from '@/types/request.type';
 import { getParam } from '@/utils/local-storage';
 import { Response } from 'next/dist/compiled/@edge-runtime/primitives/fetch';
 
-const host = 'http://localhost:8080/api/wedding-planner';
-// const host = 'https://wedding.mssalazarb.dev/api/wedding-planner';
+// const host = 'http://localhost:8080/api/wedding-planner';
+const host = 'https://wedding.mssalazarb.dev/api/wedding-planner';
 
 const contentType: any = {
   json: 'application/json',

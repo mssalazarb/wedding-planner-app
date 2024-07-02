@@ -5,6 +5,7 @@ const nextConfig = {
     compiler: {
         styledComponents: true,
     },
+    transpilePackages: ['react-big-calendar']
 };
 
 export default nextConfig;
