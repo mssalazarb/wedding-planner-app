@@ -4,7 +4,10 @@ import BlankCard from "@/components/blank-card";
 import Breadcrumb from "@/components/bread-crumb";
 import PageContainer from "@/components/page-container";
 import { findAllCustomers } from "@/services/customers.service";
-import { Box, CardContent, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography, useTheme } from "@mui/material";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box, Button, CardContent, Grid, IconButton, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Tooltip, Typography, useTheme } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 
 const headCells: any[] = [
@@ -38,17 +41,23 @@ const headCells: any[] = [
         disablePadding: false,
         label: 'Dirección',
     },
+    {
+        id: 'actions',
+        numeric: false,
+        disablePadding: false,
+        label: 'Acciones',
+    },
 ];
 
 const BCrumb = [
     {
-      to: '/wedding/dashboard',
-      title: 'Inicio',
+        to: '/wedding/dashboard',
+        title: 'Inicio',
     },
     {
-      title: 'Mis Clientes',
+        title: 'Mis Clientes',
     },
-  ];
+];
 
 export default function CustomersPage() {
     const [customers, setCustomers] = useState<any>([]);
@@ -56,6 +65,7 @@ export default function CustomersPage() {
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(0);
     const theme = useTheme();
+    const router = useRouter();
 
     useEffect(() => {
         findAllCustomers()
@@ -78,9 +88,16 @@ export default function CustomersPage() {
         setCustomersFilters(customers.slice(0, parseInt(event.target.value, 10)));
     };
 
+    const createCustomer = () => {
+        router.push('/wedding/customers/detail');
+    }
+
     return (
         <PageContainer>
             <Breadcrumb title="Mis Clientes" items={BCrumb} />
+            <Button variant="contained" color="primary" onClick={() => createCustomer()} style={{ float: 'right' }}>
+                Crear Cliente
+            </Button>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Box>
@@ -139,6 +156,19 @@ export default function CustomersPage() {
                                                                 </TableCell>
                                                                 <TableCell>
                                                                     {row.address}
+                                                                </TableCell>
+                                                                <TableCell padding="checkbox" align="center">
+                                                                    <Stack direction="row" gap={1} justifyContent={'center'}>
+                                                                        <Tooltip title="Eitar">
+                                                                            <IconButton
+                                                                                color="primary"
+                                                                                aria-label="primary-bell"
+                                                                                onClick={() => router.push(`/wedding/customers/detail?id=${row.id}`)}
+                                                                            >
+                                                                                <FontAwesomeIcon icon={faPencil} fontSize="1rem" />
+                                                                            </IconButton>
+                                                                        </Tooltip>
+                                                                    </Stack>
                                                                 </TableCell>
                                                             </TableRow>
                                                         );

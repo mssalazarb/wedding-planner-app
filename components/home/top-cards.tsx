@@ -1,38 +1,41 @@
 import { Box, CardContent, Grid, Typography } from "@mui/material";
 
+import { faCalendar, faMoneyCheck, faPenNib, faStar, faTruck, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const topcards = [
   {
-    icon: "/images/svgs/icon-account.svg",
+    icon: faUser,
     title: "Clientes",
     digits: "120",
     bgcolor: "secondary",
   },
   {
-    icon: "/images/svgs/icon-briefcase.svg",
+    icon: faTruck,
     title: "Proveedores",
     digits: "50",
     bgcolor: "warning",
   },
   {
-    icon: "/images/svgs/icon-mailbox.svg",
+    icon: faCalendar,
     title: "Reservas",
     digits: "356",
     bgcolor: "secondary",
   },
   {
-    icon: "/images/svgs/icon-favorites.svg",
+    icon: faStar,
     title: "Eventos",
     digits: "80",
     bgcolor: "error",
   },
   {
-    icon: "/images/svgs/icon-speech-bubble.svg",
+    icon: faMoneyCheck,
     title: "Beneficio",
     digits: "$9,600",
     bgcolor: "success",
   },
   {
-    icon: "/images/svgs/icon-connect.svg",
+    icon: faPenNib,
     title: "Decoraciones",
     digits: "59",
     bgcolor: "info",
@@ -46,7 +49,7 @@ const TopCards = () => {
         <Grid item xs={12} sm={4} lg={2} key={i}>
           <Box bgcolor={topcard.bgcolor + ".light"} textAlign="center">
             <CardContent>
-              <img src={topcard.icon} alt={"topcard.icon"} width="50" height="50" />
+              <FontAwesomeIcon icon={topcard.icon} fontSize="1rem" />
               <Typography
                 color={topcard.bgcolor + ".main"}
                 mt={1}

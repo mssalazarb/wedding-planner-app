@@ -40,7 +40,7 @@ const SelectField = (props: any) => {
         </MenuItem>
         {props.options.map((option: any) => (
           <MenuItem key={option.id} value={option.id}>
-            {option.nombre}
+            {option.title || option.fullName}
           </MenuItem>
         ))}
       </Select>

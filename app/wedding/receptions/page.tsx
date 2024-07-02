@@ -4,8 +4,9 @@ import BlankCard from "@/components/blank-card";
 import Breadcrumb from "@/components/bread-crumb";
 import PageContainer from "@/components/page-container";
 import { findAllReceptions } from "@/services/receptions.service";
-import { Box, CardContent, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography, useTheme } from "@mui/material";
+import { Box, Button, CardContent, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography, useTheme } from "@mui/material";
 import { uniqueId } from "lodash";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 
 const headCells: any[] = [
@@ -43,15 +44,16 @@ const headCells: any[] = [
 
 const BCrumb = [
     {
-      to: '/wedding/dashboard',
-      title: 'Inicio',
+        to: '/wedding/dashboard',
+        title: 'Inicio',
     },
     {
-      title: 'Recepciones',
+        title: 'Recepciones',
     },
-  ];
+];
 
 export default function CustomersPage() {
+    const router = useRouter();
     const [receptions, setReceptions] = useState<any>([]);
     const [receptionsFilters, setReceptionsFilters] = useState<any>([]);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -79,9 +81,16 @@ export default function CustomersPage() {
         setReceptionsFilters(receptions.slice(0, parseInt(event.target.value, 10)));
     };
 
+    const createReception = () => {
+        router.push('/wedding/receptions/detail');
+    }
+
     return (
         <PageContainer>
             <Breadcrumb title="Recepciones" items={BCrumb} />
+            <Button variant="contained" color="primary" onClick={() => createReception()} style={{ float: 'right' }}>
+                Crear Recepción
+            </Button>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Box>
